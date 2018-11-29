@@ -1,34 +1,18 @@
 <template>
-  <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        shenstone
-      </h1>
-      <h2 class="subtitle">
-        Web project for Shenstone FC
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
+  <section class="bg-blue min-h-screen flex justify-center items-center">
+    <div class="flex justify-center">
+      <div class="intro">
+          <h1 class="text-center text-grey-light text-5xl p-6">Website of Shenstone FC</h1>
+          <h2 class="text-center text-white text-4xl p-6">Coming soon...</h2>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
 
 export default {
-  components: {
-    Logo
-  }
+ 
 }
 </script>
 
