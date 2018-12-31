@@ -532,6 +532,7 @@ module.exports = {
     '32': '8rem',
     '48': '12rem',
     '64': '16rem',
+    'half': '50%',
     'full': '100%',
     'screen': '100vh'
   },
@@ -929,6 +930,7 @@ module.exports = {
       // center: true,
       // padding: '1rem',
     }),
+    require('tailwindcss-tables')(),
   ],
 
 

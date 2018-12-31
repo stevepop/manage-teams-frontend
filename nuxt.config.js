@@ -27,13 +27,17 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/css/tailwind.css'
+    '~/assets/css/tailwind.css',
+    "element-ui/lib/theme-chalk/index.css",
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    "~/plugins/filters",
+    "~/plugins/mixins/user",
+    "~/plugins/element-ui",
   ],
 
   /*
@@ -41,15 +45,46 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
   /*
   ** Axios module configuration
   */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+    baseURL: 'http://127.0.0.1:4000'
   },
 
+  router: {
+   
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: "/auth/login",
+            method: "post",
+            propertyName: "token"
+          },
+          user: {
+            url: "/auth/me",
+            method: "get",
+            propertyName: "data"
+          },
+          logout: {
+            url: "logout",
+            method: "post"
+          }
+        }
+      }
+    },
+    redirect: {
+      login: '/auth/login',
+      home: '/'
+    }
+  },
   /*
   ** Build configuration
   */

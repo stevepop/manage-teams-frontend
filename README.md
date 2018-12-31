@@ -1,10 +1,10 @@
-# shenstone
+# Football Team Management Frontend Project
 
 > Web project for Shenstone FC
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 $ yarn install
 
@@ -19,4 +19,6 @@ $ yarn start
 $ yarn run generate
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+# Author
+
+Steve Popoola @stevepop
