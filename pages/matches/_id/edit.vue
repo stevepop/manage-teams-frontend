@@ -39,7 +39,11 @@
             
               <button
                 class="btn btn-teal mx-auto" 
-                type="submit">Update Fixture
+                type="submit"
+                >
+                <span v-if="loading"><fa icon="cog" spin/></span>
+                <span v-else><fa icon="cog"/></span>
+                  Update Fixture
               </button>
               
                <nuxt-link :to="{name: 'matches'}"
@@ -54,6 +58,7 @@
 </template>
 
 <script>
+ import { mapGetters, mapMutations } from 'vuex'
 import format from "date-fns/format"
 
 export default {
@@ -63,6 +68,11 @@ export default {
     const { data: {match} }  = await app.$axios.get(`/matches/${params.id}`)
 
     return { match: match }
+  },
+  computed: {
+    ...mapGetters({
+      loading: 'util/loading'
+    })
   },
 
   created() {
@@ -77,6 +87,8 @@ export default {
 
   methods: {
     async submit() {
+      this.$store.commit('util/startLoading')
+
       const updated = {
         date: format(this.form.date, "YYYY-MM-DD"),
         time: this.form.time,
@@ -84,6 +96,8 @@ export default {
         fixture: this.form.fixture
       }
       const response = await this.$axios.put(`/matches/${this.match._id}`, updated)
+
+       this.$store.commit('util/stopLoading')
 
       this.$router.push({
         path: '/matches'

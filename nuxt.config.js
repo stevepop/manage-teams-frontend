@@ -35,9 +35,11 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    "~/plugins/axios",
     "~/plugins/filters",
     "~/plugins/mixins/user",
     "~/plugins/element-ui",
+    "~/plugins/mixins/validation",
   ],
 
   /*
@@ -46,8 +48,18 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    ['nuxt-fontawesome', {
+      component: 'fa',
+      imports: [
+        {
+          set: '@fortawesome/free-solid-svg-icons',
+          icons: ['faCog', 'faCalendar', 'faHome', 'faCircle', 'faCheck', 'faSpinner']
+        }
+      ]
+    }]
   ],
+    
   /*
   ** Axios module configuration
   */

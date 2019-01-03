@@ -26,13 +26,6 @@
                 {{ player.position}}
               </div>
           </div>
-          <!-- Position -->
-          <div class="flex text-base md:text-xl mb-2 justify-center text-grey-darker">
-            <div class="mr-2">Average Ranking:</div>
-              <div class="pl-2">
-                {{ player.ranking }}
-              </div>
-          </div>
 
           <div class="flex text-base md:text-xl mb-2 justify-center text-grey-darker my-6">
             <nuxt-link to="/players" class="no-underline text-white py-2 px-3 bg-blue-dark">

@@ -35,7 +35,11 @@
             
               <button
                 class="btn btn-teal mx-auto" 
-                type="submit">Create Schedule
+                type="submit"
+              >
+               <span v-if="loading"><fa icon="cog" spin/></span>
+               <span v-else><fa icon="cog"/></span>
+              Create Schedule
               </button>
               
                <nuxt-link :to="{name: 'trainings'}"
@@ -50,6 +54,7 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
 import format from "date-fns/format"
 
 export default {
@@ -60,15 +65,24 @@ export default {
       form: {}
     }
   },
+  computed: {
+    ...mapGetters({
+      loading: 'util/loading'
+    })
+  },
 
   methods: {
     async submit() {
+      this.$store.commit('util/startLoading')
+
       const created = {
         date: format(this.form.date, "YYYY-MM-DD"),
         time: this.form.time,
         venue: this.form.venue
       }
       const response = await this.$axios.post(`/trainings`, created)
+
+       this.$store.commit('util/stopLoading')
 
       this.$router.push({
         path: '/trainings'

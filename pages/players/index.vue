@@ -11,7 +11,6 @@
             <tr>
                 <th class="py-2 px-2 font-sans text-sm  text-grey border-b border-grey-light">Position</th>
                 <th class="py-2 px-2 font-sans text-sm  text-grey border-b border-grey-light">Player</th>
-                <th class="py-2 px-2 font-sans text-sm  text-grey border-b border-grey-light">Ranking</th>
                 <th class="py-2 px-2 font-sans text-sm  text-grey border-b border-grey-light"></th>
                 <th class="py-2 px-2 font-sans text-sm  text-grey border-b border-grey-light"></th>
 
@@ -27,8 +26,7 @@
                        {{ player.first_name }} {{ player.last_name }}
                     </nuxt-link>
                     
-                    </td>
-                  <td class="py-2 px-2 border-b border-grey-ligh text-smt text-sm">{{ player.ranking }}</td>
+                  </td>
                   <td class="py-2 px-2 border-b border-grey-light">
                     <img 
                       class="block rounded-full mx-auto border border-grey w-8" 
