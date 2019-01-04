@@ -25,16 +25,30 @@
                 <label class="field-label" for="time">Time</label>
                 <el-time-select
                   v-model="form.time"
-                  placeholder="Select time">
+                  placeholder="Select time"
+                  >
                 </el-time-select>
+                <span class="error" v-if="$v.form.time.$error">Time is required</span>
               </div>
                <div class="flex flex-col mb-4 md:w-full">
                 <label class="field-label" for="position">Fixture</label>
-                <input class="field" type="text" name="fixture" v-model="form.fixture">
+                <input 
+                  class="field" 
+                  type="text" 
+                  name="fixture" 
+                  v-model="form.fixture"  
+                 >
+                   <span class="error" v-if="$v.form.fixture.$error">Please enter Fixture</span>
               </div>
                <div class="flex flex-col mb-4 md:w-full">
                 <label class="field-label" for="venue">Venue</label>
-                <input class="field" type="text" name="venue" v-model="form.venue">
+                <input 
+                  class="field" 
+                  type="text" 
+                  name="venue" 
+                  v-model="form.venue"
+                >
+                <span class="error" v-if="$v.form.venue.$error">Please enter venue</span>
               </div>
             
               <button
@@ -58,7 +72,9 @@
 </template>
 
 <script>
- import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import { required, minLength, maxLength, between, sameAs, integer } from 'vuelidate/lib/validators'
+import { validationMixin } from 'vuelidate'
 import format from "date-fns/format"
 
 export default {
@@ -79,6 +95,25 @@ export default {
     this.form = {...this.match }
   },
 
+  mixins: [ validationMixin ],
+
+  validations: {
+    form: {
+        time: {
+          required,
+          minLength: minLength(4) 
+      },
+      fixture: {
+          required,
+          minLength: minLength(4) 
+      },
+      venue: {
+          required,
+          minLength: minLength(4  ) 
+      }
+    }
+  },
+
   data () {
     return {
       form: {}
@@ -86,7 +121,28 @@ export default {
   },
 
   methods: {
+    setFirstName(value) {
+        this.form.first_name = value
+        this.$v.form.first_name.$touch()
+      },
+
+      setLastName(value) {
+        this.form.last_name = value
+        this.$v.form.last_name.$touch()
+      },
+
+      setPosition(value) {
+        this.form.position = value
+        this.$v.form.position.$touch()
+      },
+      setEmail(value) {
+        this.form.email = value
+        this.$v.form.email.$touch()
+    },
     async submit() {
+      this.$v.form.$touch();
+      if (this.$v.form.$error) return 
+
       this.$store.commit('util/startLoading')
 
       const updated = {

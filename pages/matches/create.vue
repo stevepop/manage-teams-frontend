@@ -32,6 +32,7 @@
                   v-model="form.time"
                   placeholder="Select time">
                 </el-time-select>
+                 <span class="error" v-if="$v.form.time.$error">Time is required</span>
               </div>
                <div 
                class="flex flex-col mb-4 md:w-full"
@@ -39,6 +40,7 @@
                >
                 <label class="field-label" for="position">Fixture</label>
                 <input class="field" type="text" name="fixture" v-model="form.fixture">
+                <span class="error" v-if="$v.form.fixture.$error">Please enter fixture (Team A vs Team B)</span>
               </div>
                <div 
                 class="flex flex-col mb-4 md:w-full"
@@ -46,6 +48,7 @@
                 >
                 <label class="field-label" for="venue">Venue</label>
                 <input class="field" type="text" name="venue" v-model="form.venue">
+                 <span class="error" v-if="$v.form.venue.$error">Please enter venue</span>
               </div>
             
               <button
